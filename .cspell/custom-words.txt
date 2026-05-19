@@ -111,6 +111,3 @@ keyid
 reauth
 reprepare
 sandboxing
-fbclid
-gclid
-ttclid

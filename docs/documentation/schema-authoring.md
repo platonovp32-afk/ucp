@@ -101,9 +101,10 @@ Define transport bindings that appear in `ucp.services{}` registries. Each trans
 
 - **Top-level fields**: `$schema`, `$id`, `title`, `description`, `name`, `version`
 - **Variants**: `platform_schema`, `business_schema`
-- **Transport requirements** (additional beyond the common base):
-    - Platform profile (`platform_schema`): REST/MCP/Embedded require `schema` (OpenAPI/OpenRPC URL). A2A has no additional requirements.
-    - Business profile (`business_schema`): REST/MCP/A2A require `endpoint` (Agent Card URL for A2A). Embedded has no additional requirements.
+- **Transport requirements**:
+    - REST/MCP: `endpoint`, `schema` (OpenAPI/OpenRPC URL)
+    - A2A: `endpoint` (Agent Card URL)
+    - Embedded: `schema` (OpenRPC URL)
 
 ### Payment Handler Schemas
 
@@ -365,19 +366,6 @@ typos in core metadata like the `ucp` block).
   "additionalProperties": false
 }
 ```
-
-### Property-Count Constraints (`minProperties` / `maxProperties`)
-
-By default, UCP schemas do not set `minProperties` or `maxProperties` on
-object fields:
-
-- **`maxProperties`** — Limits are deferred to implementers. The protocol
-  does not define caps because any specific limit requires judgment calls
-  that inevitably run into exceptions. Implementers are encouraged to
-  impose their own constraints and surface clear error feedback to support
-  debugging and good behavior.
-- **`minProperties`** — Empty objects (`{}`) are well-formed and harmless.
-  Implementers should accept and process them as a no-op.
 
 ## Complete Example: Capability Schema
 

@@ -18,7 +18,8 @@
       "description": "RFC 9535 JSONPath to the component the message refers to."
     },
     "code": {
-      "$ref": "info_code.json"
+      "type": "string",
+      "description": "Info code for programmatic handling."
     },
     "content_type": {
       "type": "string",

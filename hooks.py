@@ -225,11 +225,9 @@ def on_config(config):
         # Remove any section containing specification/ files
         sections_to_remove = []
         for section_name, pages in llms_conf["sections"].items():
-          for page in pages:
-            path = next(iter(page)) if isinstance(page, dict) else page
-            if path.startswith("specification/"):
-              sections_to_remove.append(section_name)
-              break
+          # pages is a list of strings (file paths)
+          if any(p.startswith("specification/") for p in pages):
+            sections_to_remove.append(section_name)
 
         for section_name in sections_to_remove:
           if section_name in llms_conf["sections"]:
